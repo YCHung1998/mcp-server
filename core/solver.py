@@ -4,9 +4,11 @@ import re
 from typing import List, Tuple, Set
 from core.models import RANKS, EPS, TARGET
 
-def card_to_value(card: str) -> float:
+def card_to_value(card) -> float:
     """將撲克牌符號轉換為數值"""
-    card = card.upper().strip()
+    if isinstance(card, (int, float)):
+        return float(card)
+    card = str(card).upper().strip()
     if card == "A": return 1.0
     if card == "J": return 11.0
     if card == "Q": return 12.0
